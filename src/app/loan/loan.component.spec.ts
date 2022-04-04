@@ -52,7 +52,7 @@ describe('LoanComponent', () => {
     expect(monthlyIncomeElement.value).toEqual(monthlyIncomeValue?.value);
     expect(monthlyIncomeValue?.errors).not.toBeNull();
     expect(monthlyIncomeValue?.errors?.required).toBeTruthy();
-    expect(monthlyIncomeValue?.errors?.min).toBeTruthy();
+    
   });
 
   it('check requestedAmount value before entering and validation',()=>{
@@ -67,30 +67,30 @@ describe('LoanComponent', () => {
 
   it('check loanTerm value before entering and validation',()=>{
 
-    const monthlyIncomeElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('input')[2];
-    const monthlyIncomeValue =  component.loanForm.get('loanTerm');
-    expect(monthlyIncomeElement.value).toEqual(monthlyIncomeValue?.value);
-    expect(monthlyIncomeValue?.errors).not.toBeNull();
-    expect(monthlyIncomeValue?.errors?.required).toBeTruthy();
+    const loanTermElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('input')[2];
+    const loanTermValue =  component.loanForm.get('loanTerm');
+    expect(loanTermElement.value).toEqual(loanTermValue?.value);
+    expect(loanTermValue?.errors).not.toBeNull();
+    expect(loanTermValue?.errors?.required).toBeTruthy();
     
   });
 
   it('check Children Value before entering and Validation',()=>{
 
-    const monthlyIncomeElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('select')[0];
-    const monthlyIncomeValue =  component.loanForm.get('children');
-    expect(monthlyIncomeElement.value).toEqual(monthlyIncomeValue?.value);
-    expect(monthlyIncomeValue?.errors).not.toBeNull();
-    expect(monthlyIncomeValue?.errors?.required).toBeTruthy();
+    const childrenSelectElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('select')[0];
+    const childrenSelectValue =  component.loanForm.get('children');
+    expect(childrenSelectElement.value).toEqual(childrenSelectValue?.value);
+    expect(childrenSelectValue?.errors).not.toBeNull();
+    expect(childrenSelectValue?.errors?.required).toBeTruthy();
     
   });
 
   it('check Co-Borrower Value before entering and Validation',()=>{
-    const monthlyIncomeElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('select')[1];
-    const monthlyIncomeValue =  component.loanForm.get('coapplicant');
-    expect(monthlyIncomeElement.value).toEqual(monthlyIncomeValue?.value);
-    expect(monthlyIncomeValue?.errors).not.toBeNull();
-    expect(monthlyIncomeValue?.errors?.required).toBeTruthy();
+    const coapplicantElement = fixture.debugElement.nativeElement.querySelector('#loanForm').querySelectorAll('select')[1];
+    const coapplicantValue =  component.loanForm.get('coapplicant');
+    expect(coapplicantElement.value).toEqual(coapplicantValue?.value);
+    expect (coapplicantValue?.errors).not.toBeNull();
+    expect(coapplicantValue?.errors?.required).toBeTruthy();
   });
 
 
