@@ -1,0 +1,119 @@
+<h2>Loan Calculator</h2>
+<form [formGroup]="loanForm" id='loanForm' novalidate (ngSubmit)="submitForm()">
+
+  <div class='alert alert-success' *ngIf="loanAmount!==null && intrest!==null">
+    Congratulations!! Loan Approved for amount {{loanAmount | currency:'EUR' }} on Interest {{ intrest }}
+  </div>
+
+  <div class='mb-3' *ngIf="loanForm.hasError('non_field_errors')" class="alert alert-block alert-danger">
+    <div>{{ loanForm.getError('non_field_errors') }}</div>
+  </div>
+
+  <div class="mb-3">
+    <label class="center-block form-label">Monthly Income: (Minimum Value 50000)</label>
+    <input type='text' placeholder="Monthly Income" class="form-control" formControlName="monthlyIncome">
+  </div>
+  <div
+    *ngIf="loanForm.controls['monthlyIncome'].invalid && (loanForm.controls['monthlyIncome'].dirty || loanForm.controls['monthlyIncome'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="loanForm.controls['monthlyIncome'].errors?.required">
+      income is required.
+    </div>
+    <div *ngIf="loanForm.controls['monthlyIncome'].errors?.min">
+      Minimum Value 50000
+    </div>
+    <div *ngIf="loanForm.controls['monthlyIncome'].errors?.pattern">
+      Should be Number Only
+    </div>
+    <div *ngIf="loanForm.controls['monthlyIncome'].errors?.monthlyIncome">
+      {{loanForm.controls['monthlyIncome'].errors?.monthlyIncome}}
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <label class="center-block form-label">Loan Amount: (Minimum Loan Amount 20000000)</label>
+    <input placeholder="Loan Amount" class="form-control" formControlName="requestedAmount">
+  </div>
+  <div
+    *ngIf="loanForm.controls['requestedAmount'].invalid && (loanForm.controls['requestedAmount'].dirty || loanForm.controls['requestedAmount'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="loanForm.controls['requestedAmount'].errors?.required">
+      Amount is required.
+    </div>
+    <div *ngIf="loanForm.controls['requestedAmount'].errors?.min">
+      Minimum Loan Amount 20000000
+    </div>
+    <div *ngIf="loanForm.controls['requestedAmount'].errors?.pattern">
+      Number Only
+    </div>
+    <div *ngIf="loanForm.controls['requestedAmount'].errors?.requestedAmount">
+      {{loanForm.controls['requestedAmount'].errors?.requestedAmount}}
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <label class="center-block form-label">Loan loanTerm: (36 to 360 Months) </label>
+    <input placeholder="Loan loanTerm" class="form-control" formControlName="loanTerm">
+
+  </div>
+  <div
+    *ngIf="loanForm.controls['loanTerm'].invalid && (loanForm.controls['loanTerm'].dirty || loanForm.controls['loanTerm'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="loanForm.controls['loanTerm'].errors?.required">
+      loanTerm is required.
+    </div>
+    <div *ngIf="loanForm.controls['loanTerm'].errors?.min || loanForm.controls['loanTerm'].errors?.max">
+      Minimum loanTerm 36 Months Maximum loanTerm 360 Months
+    </div>
+    <div *ngIf="loanForm.controls['loanTerm'].errors?.pattern">
+      Should be Number Only
+    </div>
+    <div *ngIf="loanForm.controls['loanTerm'].errors?.loanTerm">
+      {{loanForm.controls['loanTerm'].errors?.loanTerm}}
+    </div>
+  </div>
+
+
+  <div class="mb-3">
+    <label class="center-block form-label">Children:</label>
+    <select class="form-control form-select" formControlName="children">
+      <option value="NONE">NONE</option>
+      <option value="SINGLE">Single</option>
+      <option value="MULTIPLE">Multiple</option>
+    </select>
+  </div>
+  <div
+    *ngIf="loanForm.controls['children'].invalid && (loanForm.controls['children'].dirty || loanForm.controls['children'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="loanForm.controls['children'].errors?.required">
+      Please Select a Value in Children
+    </div>
+    <div *ngIf="loanForm.controls['children'].errors?.children">
+      {{loanForm.controls['children'].errors?.children}}
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="center-block form-label">Co Applicant:</label>
+    <select class="form-select" formControlName="coapplicant">
+      <option value='NONE' selected>NONE</option>
+      <option value='SINGLE_BORROWERS'>Single Borrower</option>
+      <option value='MULTIPLE_BORROWERS'>Multiple Borrrower</option>
+    </select>
+  </div>
+  <div
+    *ngIf="loanForm.controls['coapplicant'].invalid && (loanForm.controls['coapplicant'].dirty || loanForm.controls['coapplicant'].touched)"
+    class="alert alert-danger">
+    <div *ngIf="loanForm.controls['coapplicant'].errors?.required">
+      Please Select a Value in Co-Applicant
+    </div>
+    <div *ngIf="loanForm.controls['coapplicant'].errors?.coapplicant">
+      {{loanForm.controls['coapplicant'].errors?.coapplicant}}
+    </div>
+  </div>
+
+
+  <button type="submit" [disabled]="loanForm.invalid" class="btn btn-primary">Submit</button>
+</form>
